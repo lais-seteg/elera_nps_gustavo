@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pesquisa de Satisfação Seteg</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo da Seteg -->
+    <img src="imagens/logo.png" alt="Logo Seteg" class="logo" />
+
+    <h1>Pesquisa de Satisfação</h1>
+    
+    <!-- Cabeçalho centralizado e compacto -->
+    <div class="header-content">
+          <p class="greeting" id="greeting-text">Olá, Gustavo Leucena   </p>
+      <p class="intro-text">
+        Sua opinião é essencial para aprimorarmos continuamente nosso atendimento e serviços.
+      </p>
+    </div>
+
+    <!-- Pergunta 1 -->
+    <div class="question">
+      <label>1. De 0 a 10 qual nota você atribui ao trabalho da Seteg?</label>
+      <div class="rating" id="rating-q1" role="radiogroup">
+        <button type="button" data-value="0">0</button>
+        <button type="button" data-value="1">1</button>
+        <button type="button" data-value="2">2</button>
+        <button type="button" data-value="3">3</button>
+        <button type="button" data-value="4">4</button>
+        <button type="button" data-value="5">5</button>
+        <button type="button" data-value="6">6</button>
+        <button type="button" data-value="7">7</button>
+        <button type="button" data-value="8">8</button>
+        <button type="button" data-value="9">9</button>
+        <button type="button" data-value="10">10</button>
+      </div>
+      <span class="error-msg" id="error-q1"></span>
+    </div>
+
+    <!-- Pergunta 2 -->
+    <div class="question">
+      <label>2. De 0 a 10 o quanto você está satisfeito com o seu relacionamento com nossa equipe?</label>
+      <div class="rating" id="rating-q2" role="radiogroup">
+        <button type="button" data-value="0">0</button>
+        <button type="button" data-value="1">1</button>
+        <button type="button" data-value="2">2</button>
+        <button type="button" data-value="3">3</button>
+        <button type="button" data-value="4">4</button>
+        <button type="button" data-value="5">5</button>
+        <button type="button" data-value="6">6</button>
+        <button type="button" data-value="7">7</button>
+        <button type="button" data-value="8">8</button>
+        <button type="button" data-value="9">9</button>
+        <button type="button" data-value="10">10</button>
+      </div>
+      <span class="error-msg" id="error-q2"></span>
+    </div>
+
+    <!-- Pergunta 3 -->
+    <div class="question">
+      <label>3. De 0 a 10 o quão efetiva é a comunicação com os canais de acesso a Seteg?</label>
+      <div class="rating" id="rating-q3" role="radiogroup">
+        <button type="button" data-value="0">0</button>
+        <button type="button" data-value="1">1</button>
+        <button type="button" data-value="2">2</button>
+        <button type="button" data-value="3">3</button>
+        <button type="button" data-value="4">4</button>
+        <button type="button" data-value="5">5</button>
+        <button type="button" data-value="6">6</button>
+        <button type="button" data-value="7">7</button>
+        <button type="button" data-value="8">8</button>
+        <button type="button" data-value="9">9</button>
+        <button type="button" data-value="10">10</button>
+      </div>
+      <span class="error-msg" id="error-q3"></span>
+    </div>
+
+    <!-- Pergunta 4 -->
+    <div class="question">
+      <label>4. De 0 a 10 o quanto você nos indicaria a um amigo, familiar ou parceiro de negócios?</label>
+      <div class="rating" id="rating-q4" role="radiogroup">
+        <button type="button" data-value="0">0</button>
+        <button type="button" data-value="1">1</button>
+        <button type="button" data-value="2">2</button>
+        <button type="button" data-value="3">3</button>
+        <button type="button" data-value="4">4</button>
+        <button type="button" data-value="5">5</button>
+        <button type="button" data-value="6">6</button>
+        <button type="button" data-value="7">7</button>
+        <button type="button" data-value="8">8</button>
+        <button type="button" data-value="9">9</button>
+        <button type="button" data-value="10">10</button>
+      </div>
+      <span class="error-msg" id="error-q4"></span>
+    </div>
+
+    <!-- Feedback -->
+    <div class="question feedback-question">
+      <label for="feedback">5. Quais suas sugestões de melhorias, elogios e feedbacks gerais?</label>
+      <textarea id="feedback" placeholder="Digite sua resposta aqui..."></textarea>
+      <span class="error-msg" id="error-feedback"></span>
+    </div>
+
+    <!-- Botão Enviar -->
+    <button type="button" id="submit-btn">Enviar Respostas</button>
+    <div id="processing-msg" class="processing-msg hidden">Processando sua resposta...</div>
+  </div>
+
+  <!-- Tela de Sucesso -->
+  <div id="success-screen" class="success-screen hidden">
+    <div class="success-content">
+      <button class="close-btn" id="close-success" aria-label="Fechar">×</button>
+      <div class="success-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h2>Muito obrigado!</h2>
+      <p>Agradecemos imensamente a sua confiança e o tempo dedicado para compartilhar sua opinião. Sua resposta é fundamental para continuarmos evoluindo.</p>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
